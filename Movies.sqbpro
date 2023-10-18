@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/USUARIO/Desktop/Movies.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure pragmas browser query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1747"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,6:mainMovies"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Movies" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="16" mode="1"/></sort><column_widths><column index="1" value="201"/><column index="2" value="300"/><column index="3" value="106"/><column index="4" value="76"/><column index="5" value="61"/><column index="6" value="184"/><column index="7" value="98"/><column index="8" value="300"/><column index="9" value="85"/><column index="10" value="204"/><column index="11" value="155"/><column index="12" value="163"/><column index="13" value="170"/><column index="14" value="168"/><column index="15" value="91"/><column index="16" value="70"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">-- What director did the most movies in his history?
+SELECT Director, COUNT(Series_Title) AS Series FROM Movies GROUP BY director ORDER BY COUNT(Series_Title) DESC;
+-- We discover that Alfred Hitchcock is the Director who has made the most movies being 14
+
+-- What movies did Alfred Hitchcock?
+SELECT Director, Series_Title, Genre FROM Movies WHERE Director = &quot;Alfred Hitchcock&quot; ORDER BY Genre DESC;
+-- WE can count that most of the movies that Alfred does are about Drama and Crime
+
+-- Which genre has the most rating?
+SELECT Genre, IMDB_Rating FROM Movies GROUP BY Genre ORDER BY IMDB_Rating DESC;
+-- We can see that Drame is the genre that we see is one of the genres that people rates with higger score
+
+-- Does the runtime of the movies count to watch to be drama?
+SELECT genre, Runtime FROM Movies ORDER BY GENRE DESC;
+-- As we can see, drama movies have lot of variation, it can be western, sci-Fi, war or else having runtime between 100 and 200 minutes
+
+-- What score have the top 10 movies? And what's the genre it shows the most seeing?
+SELECT Series_Title, Genre, Meta_score FROM Movies ORDER BY Meta_score DESC LIMIT 10;
+-- 7 of the top 10 movies that we see has drama genre, so we can still see that drama is one of the genres that peoples most watch
+
+-- What people voted the most between all the movies? What genres they have?
+ SELECT Series_Title, Genre, No_of_Votes FROM Movies ORDER BY No_of_Votes DESC;
+-- We see that &quot;The Sahshank Redemption&quot; is the movie that people voted the most, second &quot;The Dark Knight&quot; and third &quot;Inception&quot;, 
+-- that can mean two things, or either are really bad or really good movies and people give their opinion. Also the top 3 of the movies 
+-- have two of them Drama, we can see again that this genre is around there.
+
+-- Who is the actor who has made the most movies?
+SELECT Star1, COUNT(Series_Title) FROM Movies GROUP BY Star1 ORDER BY COUNT(Series_Title) DESC
+SELECT Star2, COUNT(Series_Title) FROM Movies GROUP BY Star2 ORDER BY COUNT(Series_Title) DESC
+SELECT Star3, COUNT(Series_Title) FROM Movies GROUP BY Star3 ORDER BY COUNT(Series_Title) DESC
+SELECT Star4, COUNT(Series_Title) FROM Movies GROUP BY Star4 ORDER BY COUNT(Series_Title) DESC
+-- Tom Hanks has made 12 movies, it can mean that lot of directors want him for their Movies
+
+-- What genres does Tom Hanks to make him the actor who has made the most movies?
+SELECT star1, Genre, Series_Title FROM Movies WHERE Star1 = &quot;Tom Hanks&quot;
+-- 7/12 have part of Drama genre, so that means that lof ot those movies are from that genre
+
+-- What are the movies with most gross?
+SELECT Series_Title, Gross FROM Movies ORDER BY gross DESC LIMIT 20
+-- Star wars, Avengers and animated movies are the ones with most gross in the entire list, we can analize that there can be a nice different between one and another</sql><current_tab id="0"/></tab_sql></sqlb_project>
